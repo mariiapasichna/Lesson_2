@@ -23,6 +23,7 @@ public class Main {
     2) Про помощи своего класса IntList заполнить случайными числами и отсортировать.
     */
     public static final int CAPACITY_OF_LIST = 10000;
+    public static final Random RANDOM = new Random();
 
     public static void main(String[] args) {
         List<Integer> list = new ArrayList<>();
@@ -119,8 +120,9 @@ public class Main {
         System.out.println(list2);
         sortList(list2);
         System.out.println(list2);
-        calculateGrowList(list3);
+        countGrowList(list3);
         //System.out.println("The number of buffer grow operations for " + CAPACITY_OF_LIST + " elements: " + IntArrayList.count);
+        //count: 17
     }
 
     private static void sortList(IntList list2) {
@@ -136,16 +138,14 @@ public class Main {
     }
 
     private static void initList(IntList list2) {
-        Random random = new Random();
         for (int i = 0; i < 10; i++) {
-            list2.add(random.nextInt(100));
+            list2.add(RANDOM.nextInt(100));
         }
     }
 
-    private static void calculateGrowList(IntList list3) {
-        Random random = new Random();
+    private static void countGrowList(IntList list3) {
         for (int i = 0; i < CAPACITY_OF_LIST; i++) {
-            list3.add(random.nextInt(100));
+            list3.add(RANDOM.nextInt(100));
         }
     }
 }

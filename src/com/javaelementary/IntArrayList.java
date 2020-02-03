@@ -177,12 +177,15 @@ public class IntArrayList implements IntList {
     }
 
     private static void subListRangeCheck(int fromIndex, int toIndex, int size) {
-        if (fromIndex < 0)
+        if (fromIndex < 0) {
             throw new IndexOutOfBoundsException("fromIndex = " + fromIndex);
-        if (toIndex > size)
+        }
+        if (toIndex > size) {
             throw new IndexOutOfBoundsException("toIndex = " + toIndex);
-        if (fromIndex > toIndex)
+        }
+        if (fromIndex > toIndex) {
             throw new IllegalArgumentException("fromIndex(" + fromIndex + ") > toIndex(" + toIndex + ")");
+        }
     }
 
     private static class SubList implements IntList {
@@ -288,8 +291,9 @@ public class IntArrayList implements IntList {
         }
 
         private void checkSubListIndex(int index) {
-            if (index < 0 || index > this.size)
+            if (index < 0 || index > this.size) {
                 throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + this.size);
+            }
         }
     }
 }
