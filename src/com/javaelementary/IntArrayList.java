@@ -189,50 +189,50 @@ public class IntArrayList implements IntList {
     }
 
     private static class SubList implements IntList {
-        private final IntArrayList root;
-        private final SubList parent;
+        private final IntArrayList intArrayList;
+        private final SubList subList;
         private final int offset;
         private int fromIndex;
         private int size;
 
-        public SubList(IntArrayList root, int fromIndex, int toIndex) {
-            this.root = root;
-            this.parent = null;
+        public SubList(IntArrayList intArrayList, int fromIndex, int toIndex) {
+            this.intArrayList = intArrayList;
+            this.subList = null;
             this.offset = fromIndex;
             this.size = toIndex - fromIndex;
         }
 
-        public SubList(SubList parent, int fromIndex, int toIndex) {
-            this.root = parent.root;
-            this.parent = parent;
-            this.offset = parent.offset + fromIndex;
+        public SubList(SubList subList, int fromIndex, int toIndex) {
+            this.intArrayList = subList.intArrayList;
+            this.subList = subList;
+            this.offset = subList.offset + fromIndex;
             this.size = toIndex - fromIndex;
         }
 
         @Override
         public boolean add(int element) {
-            root.add(offset + size, element);
+            intArrayList.add(offset + size, element);
             return true;
         }
 
         @Override
         public void add(int index, int element) {
             checkSubListIndex(index);
-            root.add(offset + index, element);
+            intArrayList.add(offset + index, element);
         }
 
         @Override
         public void clear() {
-            int newSize = root.size - this.size;
-            System.arraycopy(root.elementData, offset + this.size, root.elementData, offset, root.size - (offset + this.size));
-            root.size = newSize;
+            int newSize = intArrayList.size - this.size;
+            System.arraycopy(intArrayList.elementData, offset + this.size, intArrayList.elementData, offset, intArrayList.size - (offset + this.size));
+            intArrayList.size = newSize;
             this.size = 0;
         }
 
         @Override
         public int get(int index) {
             checkSubListIndex(index);
-            return root.elementData[offset + index];
+            return intArrayList.elementData[offset + index];
         }
 
         @Override
@@ -243,15 +243,15 @@ public class IntArrayList implements IntList {
         @Override
         public int remove(int index) {
             checkSubListIndex(index);
-            return root.remove(offset + index);
+            return intArrayList.remove(offset + index);
         }
 
         @Override
         public boolean removeByValue(int value) {
             for (int i = 0; i < this.size; i++) {
-                if (root.elementData[i + offset] == value) {
-                    System.arraycopy(root.elementData, offset + i + 1, root.elementData, offset + i, root.size - (offset + i));
-                    root.size--;
+                if (intArrayList.elementData[i + offset] == value) {
+                    System.arraycopy(intArrayList.elementData, offset + i + 1, intArrayList.elementData, offset + i, intArrayList.size - (offset + i));
+                    intArrayList.size--;
                     this.size--;
                     return true;
                 }
@@ -262,8 +262,8 @@ public class IntArrayList implements IntList {
         @Override
         public int set(int index, int element) {
             checkSubListIndex(index);
-            int oldValue = root.elementData[index + offset];
-            root.elementData[index + offset] = element;
+            int oldValue = intArrayList.elementData[index + offset];
+            intArrayList.elementData[index + offset] = element;
             return oldValue;
         }
 
@@ -281,7 +281,7 @@ public class IntArrayList implements IntList {
         @Override
         public int[] toArray() {
             int[] result = new int[size];
-            System.arraycopy(root.elementData, offset, result, 0, size);
+            System.arraycopy(intArrayList.elementData, offset, result, 0, size);
             return result;
         }
 
