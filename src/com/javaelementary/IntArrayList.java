@@ -24,7 +24,7 @@ public class IntArrayList implements IntList {
      * Inserts the specified element at the specified position in this list.
      * @param index   - index at which the specified element is to be inserted
      * @param element - element to be inserted
-     * @throws IndexOutOfBoundsException
+     * @throws IndexOutOfBoundsException - if the index is out of range (index < 0 || index > size())
      */
     @Override
     public void add(int index, int element) {
@@ -48,7 +48,7 @@ public class IntArrayList implements IntList {
      * Returns the element at the specified position in this list.
      * @param index - index of the element to return
      * @return the element at the specified position in this list
-     * @throws IndexOutOfBoundsException
+     * @throws IndexOutOfBoundsException - if the index is out of range (index < 0 || index > size())
      */
     @Override
     public int get(int index) {
@@ -70,7 +70,7 @@ public class IntArrayList implements IntList {
      * Shifts any subsequent elements to the left (subtracts one from their indices).
      * @param index - the index of the element to be removed
      * @return the element that was removed from the list
-     * @throws IndexOutOfBoundsException
+     * @throws IndexOutOfBoundsException - if the index is out of range (index < 0 || index > size())
      */
     @Override
     public int remove(int index) {
@@ -103,7 +103,7 @@ public class IntArrayList implements IntList {
      * @param index   - index of the element to replace
      * @param element - element to be stored at the specified position
      * @return the element previously at the specified position
-     * @throws IndexOutOfBoundsException
+     * @throws IndexOutOfBoundsException - if the index is out of range (index < 0 || index > size())
      */
     @Override
     public int set(int index, int element) {
@@ -127,8 +127,8 @@ public class IntArrayList implements IntList {
      * @param fromIndex - low endpoint (inclusive) of the subList
      * @param toIndex   - high endpoint (exclusive) of the subList
      * @return a view of the specified range within this list
-     * @throws IndexOutOfBoundsException
-     * @throws IllegalArgumentException
+     * @throws IndexOutOfBoundsException - if the index is out of range (index < 0 || index > size())
+     * @throws IllegalArgumentException - if the endpoint indices are out of order (fromIndex > toIndex)
      */
     @Override
     public IntList subList(int fromIndex, int toIndex) {
